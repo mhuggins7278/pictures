@@ -1,0 +1,15 @@
+<h1>Photos</h1>
+<p>Album Name:  <%= @name  %></p>
+
+
+
+
+<table>
+  <% @photos.each_slice(8) do |photos| %>
+    <tr>
+      <% photos.each do |photo| %>
+        <td><%= link_to image_tag(photo.thumbnails[0].url, :border=>2, :mouseover => photo.thumbnails[-1].url ), "#{photo.url}"   %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

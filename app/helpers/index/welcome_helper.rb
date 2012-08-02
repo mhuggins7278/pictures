@@ -1,0 +1,2 @@
+module Index::WelcomeHelper
+end
