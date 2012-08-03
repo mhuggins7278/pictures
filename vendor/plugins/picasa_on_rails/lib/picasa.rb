@@ -23,9 +23,9 @@ module Picasa
       request = Net::HTTP.new(uri.host, uri.port)
       request.use_ssl = true
       request.verify_mode = OpenSSL::SSL::VERIFY_NONE
-      response, data = request.post(uri.path, "accountType=HOSTED_OR_GOOGLE&Email=#{email}&Passwd=#{password}&service=lh2&source=#{source}")
-  
-      authMatch = Regexp.compile("(Auth=)([A-Za-z0-9_\-]+)\n").match(data.to_s)
+      response = request.post(uri.path, "accountType=HOSTED_OR_GOOGLE&Email=#{email}&Passwd=#{password}&service=lh2&source=#{source}")
+
+      authMatch = Regexp.compile("(Auth=)([A-Za-z0-9_\-]+)\n").match(response.body.to_s)
       if authMatch
         authorizationKey = authMatch[2].to_s # substring that matched the pattern ([A-Za-z0-9_\-]+)
       end
@@ -66,7 +66,7 @@ module Picasa
 
       response, xml_response = http.get(uri.path, headers)
       
-      #xml_response = Net::HTTP.get_response(URI.parse(url)).body.to_s
+      xml_response = Net::HTTP.get_response(URI.parse(url)).body.to_s
       albums = create_albums_from_xml(xml_response)
     
       return albums
@@ -433,7 +433,8 @@ module Picasa
     
       headers = {"Authorization" => "GoogleLogin auth=#{self.picasa_session.auth_key}"}
 
-      response, xml_response = http.get(uri.path, headers)
+      response, body = http.get(uri.path, headers)
+      xml_response = Net::HTTP.get_response(URI.parse(url)).body.to_s
       photos = self.create_photos_from_xml(xml_response)
       
       return photos

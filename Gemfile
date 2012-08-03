@@ -6,10 +6,11 @@ gem 'rails', '3.1.1'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-gem 'picasa',:require =>  'Picasa'
+gem 'picasa', ">=0.1.9",:require =>  'Picasa'
 gem 'devise', :require => 'Devise'
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
-gem 'xml-simple'
+gem 'picasawebalbums, :require => 'PicasaWebAlbums'
+
 
 # Gems used only for assets and not required
 # in production environments by default.

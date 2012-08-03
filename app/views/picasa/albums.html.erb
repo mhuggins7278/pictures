@@ -1,8 +1,6 @@
 <h1>Albums</h1>
 <p>Click on an Album to view the pictures</p>
 
-
-<table>
   <% @albums.each_slice(3) do |albums| %>
     <tr>
       <% albums.each do |album| %>
@@ -10,6 +8,7 @@
       <% end %>
     </tr>
   <% end %>
+  
 </table>
 
 
