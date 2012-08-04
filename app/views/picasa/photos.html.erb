@@ -3,13 +3,15 @@
 
 
 
-
+<div style="text-align: left;">
 <table>
-  <% @photos.each_slice(8) do |photos| %>
+  <% @photos.each_slice(3) do |photos| %>
     <tr>
       <% photos.each do |photo| %>
-        <td><%= link_to image_tag(photo.thumbnails[0].url, :border=>2, :mouseover => photo.thumbnails[-1].url ), "#{photo.url}"   %></td>
+
+        <td><%= link_to image_tag(photo.url, :border=>2, :mouseover => photo.url ), "#{photo.url}"   %></td>
       <% end %>
     </tr>
   <% end %>
 </table>
+</div>

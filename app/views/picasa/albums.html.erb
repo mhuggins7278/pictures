@@ -1,14 +1,17 @@
 <h1>Albums</h1>
 <p>Click on an Album to view the pictures</p>
+<div style="text-align: left;">
 
   <% @albums.each_slice(3) do |albums| %>
     <tr>
       <% albums.each do |album| %>
-        <td><%= link_to image_tag(album.thumbnail.url, :border=>5), "/picasa/photos?name=#{album.name}", :title => album.name %></td>
+
+        <td><%= link_to image_tag(album.cover_photo_url, :border=>5), "/picasa/photos?id=#{album.id}&name=#{album.title}", :title => album.title %></td>
+
       <% end %>
     </tr>
   <% end %>
   
 </table>
-
+</div>
 
